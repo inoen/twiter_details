@@ -6,6 +6,12 @@ twitter = Twython(config.api_key, config.api_secret, config.access_token, config
 
 response = twitter.search(q='"#100DaysOfCode" -filter:retweets', result_type="recent", count="1")
 
-for log in response['statuses']:
-    for key, value in log.items():
-        print(key, value)
+
+for tweet in response['statuses']:
+    main = (tweet['user']['screen_name']+'::'+tweet['user']['name'])
+    print (main.encode("CP932", "replace").decode("CP932"))
+    print (type(main))
+    text = tweet['text']
+    print (text.encode("CP932", "ignore").decode("CP932"))
+    print(tweet['created_at'])
+    print('----------------------------------------------------')
